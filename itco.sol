@@ -8,15 +8,20 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20Pausable.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "ERC20Freezable.sol";
 
-contract ITCOToken is Ownable, ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, ERC20Pausable, ERC20Freezable {
+/**
+* @author ITMF Ltd.
+* @title ITCOToken - Primary contract class for ITCO
+*/
+contract ITCOToken is Ownable, ERC20, ERC20Detailed, ERC20Mintable,
+    ERC20Burnable, ERC20Pausable, ERC20Freezable {
 
-    uint64 public constant INITIAL_SUPPLY = 100000000000; // Replace me
+    uint64 public constant INITIAL_SUPPLY = 525000000;
 
     constructor()
         Ownable()
         AdminRole()
         ERC20()
-        ERC20Detailed("InfoTech Mutual Fund Test 2", "ITCO", 0)
+        ERC20Detailed("InfoTech Mutual Fund Coin", "ITCO", 0)
         ERC20Mintable()
         ERC20Burnable()
         ERC20Pausable()

@@ -24,6 +24,10 @@ contract PauserRole is AdminRole {
         return _pausers.has(account);
     }
 
+    /**
+     * @dev Function has been modified from original library to only allow
+     * accounts with admin role to add a pauser
+     */
     function addPauser(address account) public onlyAdmin {
         _addPauser(account);
     }

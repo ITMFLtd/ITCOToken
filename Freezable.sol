@@ -2,6 +2,10 @@ pragma solidity ^0.5.2;
 
 import "FreezerRole.sol";
 
+/**
+ * @author ITMF Ltd.
+ * @title Freezable - Contract to allow accounts to be frozen
+ */
 contract Freezable is FreezerRole {
     event Freeze(address account);
     event Unfreeze(address account);
@@ -9,26 +13,43 @@ contract Freezable is FreezerRole {
     mapping (address => bool) private _frozen;
 
     /**
-     * @return true if the contract is paused, false otherwise.
+     * @param account The account address to be checked
+     * @return true if the account has been marked as frozen
      */
     function isFrozen(address account) public view returns (bool) {
         return _frozen[account];
     }
 
     /**
-     * @dev Modifier to make a function callable only when the contract is not paused.
+     * @dev Modifier to make a function callable only when the message sender
+     * has not had their account frozen
      */
     modifier whenNotFrozen() {
         require(!_frozen[msg.sender]);
         _;
     }
 
+    /**
+     * @param to The target account for which tokens are being sent to during
+     * a transfer
+     * @dev Modifier to make a function callable only when the message sender
+     * and the account that they are sending to have not been frozen
+     */
     modifier whenNotFrozenTransfer(address to) {
         require(!_frozen[to]);
         require(!_frozen[msg.sender]);
         _;
     }
 
+    /**
+     * @param to The target account for which tokens are being sent to during
+     * a transfer
+     * @param from The source account for which tokens are being drawn from
+     * during a transfer
+     * @dev Modifier to make a function callable only when the message sender,
+     * the account that they are sending to, and the receiving account have not
+     * been frozen
+     */
     modifier whenNotFrozenTransferFrom(address to, address from) {
         require(!_frozen[to]);
         require(!_frozen[from]);
@@ -37,7 +58,8 @@ contract Freezable is FreezerRole {
     }
 
     /**
-     * @dev called by the owner to pause, triggers stopped state
+     * @param account The account to be frozen
+     * @dev Called by a freezer to mark an account as frozen
      */
     function freeze(address account) public onlyFreezer {
         _frozen[account] = true;
@@ -45,7 +67,8 @@ contract Freezable is FreezerRole {
     }
 
     /**
-     * @dev called by the owner to unpause, returns to normal state
+     * @param account The account to be unfrozen
+     * @dev Called by a freezer to mark an account as not frozen
      */
     function unfreeze(address account) public onlyFreezer {
         _frozen[account] = false;

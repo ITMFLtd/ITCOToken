@@ -24,6 +24,10 @@ contract MinterRole is AdminRole {
         return _minters.has(account);
     }
 
+    /**
+     * @dev Function has been modified from original library to only allow
+     * accounts with admin role to add a minter
+     */
     function addMinter(address account) public onlyAdmin {
         _addMinter(account);
     }
