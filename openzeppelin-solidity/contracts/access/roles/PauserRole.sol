@@ -3,6 +3,10 @@ pragma solidity ^0.5.2;
 import "../Roles.sol";
 import "AdminRole.sol";
 
+/**
+ * @dev PauserRole has been modified from its original openzeppelin source to
+ * allow for more detailed permissions
+ */
 contract PauserRole is AdminRole {
     using Roles for Roles.Role;
 
@@ -30,6 +34,15 @@ contract PauserRole is AdminRole {
      */
     function addPauser(address account) public onlyAdmin {
         _addPauser(account);
+    }
+
+    /**
+     * @dev Admin only function to strip someone of pauser role. This function
+     * was not present in the original library
+     * @param account The account to be removed as a pauser
+     */
+    function removeMinter(address account) public onlyAdmin {
+        _removePauser(account);
     }
 
     function renouncePauser() public {

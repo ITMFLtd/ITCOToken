@@ -3,6 +3,10 @@ pragma solidity ^0.5.2;
 import "../Roles.sol";
 import "AdminRole.sol";
 
+/**
+ * @dev MinterRole has been modified from its original openzeppelin source to
+ * allow for more detailed permissions
+ */
 contract MinterRole is AdminRole {
     using Roles for Roles.Role;
 
@@ -30,6 +34,15 @@ contract MinterRole is AdminRole {
      */
     function addMinter(address account) public onlyAdmin {
         _addMinter(account);
+    }
+
+    /**
+     * @dev Admin only function to strip someone of minter role. This function
+     * was not present in the original library
+     * @param account The account to be removed as a minter
+     */
+    function removeMinter(address account) public onlyAdmin {
+        _removeMinter(account);
     }
 
     function renounceMinter() public {

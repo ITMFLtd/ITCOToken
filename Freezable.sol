@@ -30,10 +30,10 @@ contract Freezable is FreezerRole {
     }
 
     /**
-     * @param to The target account for which tokens are being sent to during
-     * a transfer
      * @dev Modifier to make a function callable only when the message sender
      * and the account that they are sending to have not been frozen
+     * @param to The target account for which tokens are being sent to during
+     * a transfer
      */
     modifier whenNotFrozenTransfer(address to) {
         require(!_frozen[to]);
@@ -42,13 +42,13 @@ contract Freezable is FreezerRole {
     }
 
     /**
+     * @dev Modifier to make a function callable only when the message sender,
+     * the account that they are sending to, and the receiving account have not
+     * been frozen
      * @param to The target account for which tokens are being sent to during
      * a transfer
      * @param from The source account for which tokens are being drawn from
      * during a transfer
-     * @dev Modifier to make a function callable only when the message sender,
-     * the account that they are sending to, and the receiving account have not
-     * been frozen
      */
     modifier whenNotFrozenTransferFrom(address to, address from) {
         require(!_frozen[to]);
@@ -58,8 +58,8 @@ contract Freezable is FreezerRole {
     }
 
     /**
-     * @param account The account to be frozen
      * @dev Called by a freezer to mark an account as frozen
+     * @param account The account to be frozen
      */
     function freeze(address account) public onlyFreezer {
         _frozen[account] = true;
@@ -67,8 +67,8 @@ contract Freezable is FreezerRole {
     }
 
     /**
-     * @param account The account to be unfrozen
      * @dev Called by a freezer to mark an account as not frozen
+     * @param account The account to be unfrozen
      */
     function unfreeze(address account) public onlyFreezer {
         _frozen[account] = false;

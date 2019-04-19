@@ -35,8 +35,8 @@ contract AdminRole {
     }
 
     /**
-     * @param account The account to be added as an admin
      * @dev Public function to add an admin
+     * @param account The account to be added as an admin
      */
     function addAdmin(address account) public onlyAdmin {
         _addAdmin(account);
@@ -50,8 +50,8 @@ contract AdminRole {
     }
 
     /**
-     * @param account The account to be added as an admin
      * @dev Internal function to implement adding an admin
+     * @param account The account to be added as an admin
      */
     function _addAdmin(address account) internal {
         _admins.add(account);
@@ -59,8 +59,8 @@ contract AdminRole {
     }
 
     /**
-     * @param account The account to be removed from being an admin
      * @dev Internal function to implement removing/renouncing admin role
+     * @param account The account to be removed from being an admin
      */
     function _removeAdmin(address account) internal {
         _admins.remove(account);

@@ -36,8 +36,8 @@ contract FreezerRole is AdminRole {
     }
 
     /**
-     * @param account The account to be added as freezer
      * @dev Public function for adding a freezer
+     * @param account The account to be added as freezer
      */
     function addFreezer(address account) public onlyAdmin {
         _addFreezer(account);
@@ -51,8 +51,16 @@ contract FreezerRole is AdminRole {
     }
 
     /**
-     * @param account The account to be added as a freezer
+     * @dev Admin only function to strip someone of the freezer role
+     * @param account The account to remove from freezer role
+     */
+    function removeFreezer(address account) public onlyAdmin {
+        _removeFreezer(account);
+    }
+
+    /**
      * @dev Internal function to implement adding a freezer
+     * @param account The account to be added as a freezer
      */
     function _addFreezer(address account) internal {
         _freezers.add(account);
@@ -60,8 +68,8 @@ contract FreezerRole is AdminRole {
     }
 
     /**
-     * @param account The account to be removed as a freezer
      * @dev Internal function to implement removing/renouncing freezer role
+     * @param account The account to be removed as a freezer
      */
     function _removeFreezer(address account) internal {
         _freezers.remove(account);
