@@ -1,6 +1,6 @@
 pragma solidity ^0.5.2;
 
-import "FreezerRole.sol";
+import "contracts/access/FreezerRole.sol";
 
 /**
  * @author ITMF Ltd.

@@ -1,7 +1,7 @@
 pragma solidity ^0.5.2;
 
 import "../Roles.sol";
-import "AdminRole.sol";
+import "contracts/access/AdminRole.sol";
 
 /**
  * @dev PauserRole has been modified from its original openzeppelin source to

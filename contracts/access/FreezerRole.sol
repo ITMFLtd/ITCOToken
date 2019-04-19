@@ -1,7 +1,7 @@
 pragma solidity ^0.5.2;
 
 import "openzeppelin-solidity/contracts/access/Roles.sol";
-import "AdminRole.sol";
+import "./AdminRole.sol";
 
 /**
 * @author ITMF Ltd.

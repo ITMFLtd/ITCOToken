@@ -1,7 +1,7 @@
 pragma solidity ^0.5.2;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-import "Freezable.sol";
+import "contracts/lifecycle/Freezable.sol";
 
 /**
  * @author ITMF Ltd.

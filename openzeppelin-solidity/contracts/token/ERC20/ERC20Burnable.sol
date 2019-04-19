@@ -1,7 +1,7 @@
 pragma solidity ^0.5.2;
 
 import "./ERC20.sol";
-import "AdminRole.sol";
+import "contracts/access/AdminRole.sol";
 
 /**
  * @title Burnable Token

@@ -6,7 +6,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Burnable.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20Pausable.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-import "ERC20Freezable.sol";
+import "contracts/token/ERC20Freezable.sol";
 
 /**
 * @author ITMF Ltd.
